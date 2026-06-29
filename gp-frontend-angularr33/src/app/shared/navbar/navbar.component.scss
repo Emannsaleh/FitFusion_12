@@ -1,0 +1,137 @@
+.navbar {
+  width: 100%;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.navbar-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.tab-btn {
+  padding: 10px 22px;
+  border-radius: 10px;
+  border: none;
+  background: #f7e6ee;
+  color: #4A2C3B;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.tab-btn:hover:not(.active-tab) {
+  background: #ffe9f2;
+  color: var(--ff-text);
+  transform: translateY(-1px);
+}
+
+.login,
+.signup {
+  padding: 10px 22px;
+  border-radius: 10px;
+  border: none;
+  background: #F5A3C7;
+  color: #4A2C3B;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.login:hover,
+.signup:hover {
+  background: #e889b5;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(245, 163, 199, 0.35);
+}
+
+.active-tab {
+  background-color: #F5A3C7;
+  color: white;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.logo-image {
+  height: 54px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.logo-image:hover {
+  opacity: 0.88;
+  transform: scale(1.02);
+}
+.nav-links {
+  display: flex;
+  gap: 4px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #4A2C3B;
+  font-weight: 500;
+}
+
+.nav-links a.active {
+  color: #F5A3C7;
+  border-bottom: 2px solid #F5A3C7;
+  padding-bottom: 4px;
+}
+
+/* Right Menu */
+.left-menu {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.right-menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-left: auto;
+}
+
+.profile:hover,
+.signout:hover {
+  color: #e889b5;
+  transform: translateY(-1px);
+}
+
+.profile,
+.signout,
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.success-snackbar {
+  background: #4caf50;
+  color: white;
+  font-weight: bold;
+}

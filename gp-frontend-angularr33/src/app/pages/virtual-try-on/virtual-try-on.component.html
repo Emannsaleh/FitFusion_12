@@ -1,0 +1,121 @@
+<div class="container">
+
+  <h1>Virtual Try-On </h1>
+  <p class="subtitle">
+    See how clothes look on you with AI-powered visualization
+  </p>
+
+  <div class="upload-card">
+
+    <div class="upload-box">
+
+      <p class="upload-text">Upload Your Photo</p>
+
+      <div class="drop-area" (click)="profileInput.click()">
+        <ng-container *ngIf="profilePreview; else noProfile">
+          <img [src]="profilePreview" class="preview">
+        </ng-container>
+
+        <ng-template #noProfile>
+          <p>No picture found</p>
+          <button class="upload-btn">Upload Photo</button>
+        </ng-template>
+
+        <input type="file" hidden #profileInput accept="image/*"
+               (change)="onProfileUpload($event)">
+      </div>
+
+      <div class="item-type" style="margin-top: 20px;">
+        <p class="upload-text">Select Item Type</p>
+
+        <div class="type-options">
+          <div class="type-btn"
+               [class.active]="selectedCategory === 'dress'"
+               (click)="selectedCategory = 'dress'">
+            👗 Dress
+          </div>
+
+          <div class="type-btn"
+               [class.active]="selectedCategory === 'top'"
+               (click)="selectedCategory = 'top'">
+            👚 Top
+          </div>
+
+          <div class="type-btn"
+               [class.active]="selectedCategory === 'bottom'"
+               (click)="selectedCategory = 'bottom'">
+            👖 Bottom
+          </div>
+
+          <div class="type-btn"
+               [class.active]="selectedCategory === 'bag'"
+               (click)="selectedCategory = 'bag'">
+            👜 Bag
+          </div>
+        </div>
+      </div>
+
+      <p class="upload-text" style="margin-top: 20px;">
+        Upload Clothing Item
+      </p>
+
+      <div class="drop-area" (click)="itemInput.click()">
+        <ng-container *ngIf="itemPreview; else noItem">
+          <img [src]="itemPreview" class="preview">
+        </ng-container>
+
+        <ng-template #noItem>
+          <img src="assets/Icons/Upload.png" class="upload-icon">
+          <p>Click to upload clothing image</p>
+        </ng-template>
+
+        <input type="file" hidden #itemInput accept="image/*"
+               (change)="onItemUpload($event)">
+      </div>
+
+    </div>
+
+    <div class="result-card" *ngIf="showResult">
+      <p class="result-title">Virtual Try-On Result </p>
+      <p class="result-des">Here's how the outfit looks on you!</p>
+
+      <div class="result-images">
+        <div class="your-photo">
+          <p>Your Photo</p>
+          <img [src]="profilePreview" class="preview">
+        </div>
+
+        <div class="with-item">
+          <p>With Clothing Item</p>
+
+          <div class="overlay">
+            <img *ngIf="resultImage"
+                 [src]="resultImage"
+                 class="preview small-item">
+
+            <p *ngIf="!resultImage" class="pending-text">
+              Processing AI result...
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <button class="try-btn-footer" (click)="showResult=false">
+        Try Another Outfit
+      </button>
+    </div>
+
+  </div>
+
+  <button class="try-btn"
+    [disabled]="
+      loadingVton ||
+      !profilePreview ||
+      !itemPreview ||
+      !selectedCategory
+    "
+    (click)="tryItOn()">
+    {{ loadingVton ? 'Processing (may take 8-10 min)...' : 'Try It On' }}
+  </button>
+
+</div>

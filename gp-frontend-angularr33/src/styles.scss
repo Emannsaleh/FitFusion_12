@@ -1,0 +1,68 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --ff-pink: #f5a3c7;
+  --ff-pink-hover: #e889b5;
+  --ff-pink-light: #ffe9f2;
+  --ff-pink-soft: #fff5f9;
+  --ff-pink-muted: #f3b3c8;
+  --ff-text: #4a2c3b;
+  --ff-text-muted: #9d7a89;
+  --ff-transition: 0.25s ease;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: #fef5f8;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+button,
+a.tab-btn,
+.nav-btn,
+.primary-btn,
+.secondary-btn,
+.pink-btn,
+.recommend-btn,
+.tab,
+.add-btn,
+.cancel-btn,
+.add-item-card,
+.upload-box,
+.feature-card-link,
+.profile,
+.signout {
+  transition:
+    background-color var(--ff-transition),
+    color var(--ff-transition),
+    border-color var(--ff-transition),
+    box-shadow var(--ff-transition),
+    transform var(--ff-transition),
+    opacity var(--ff-transition);
+}
+
+button:hover:not(:disabled),
+.primary-btn:hover,
+.pink-btn:hover,
+.recommend-btn:hover,
+.add-btn:hover {
+  background-color: var(--ff-pink-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(245, 163, 199, 0.35);
+}
+
+.secondary-btn:hover {
+  background-color: var(--ff-pink-light);
+  color: var(--ff-text);
+  transform: translateY(-1px);
+}
+
+.cancel-btn:hover {
+  background-color: var(--ff-pink-soft);
+  color: var(--ff-text);
+}

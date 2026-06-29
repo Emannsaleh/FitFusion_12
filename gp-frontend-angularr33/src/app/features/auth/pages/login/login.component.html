@@ -1,0 +1,45 @@
+<div class="all">
+  <!-- Navbar موجود خارج الـ Login component → هيظهر Sign Up فقط -->
+  
+  <!-- Main content -->
+  <main>
+    <div class="card">
+      <div class="card-header">
+        <h1 class="card-title">Welcome Back 💕</h1>
+        <p class="card-description">Sign in to your FitFusion account</p>
+      </div>
+
+      <form class="login-form" (ngSubmit)="onSubmit()" #loginForm="ngForm"> 
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="you@example.com" 
+            [(ngModel)]="email" 
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            placeholder="**********" 
+
+            [(ngModel)]="password"
+            required 
+            minlength="6">
+        </div>
+
+        <button type="submit" class="signin-button" [disabled]="loginForm.invalid" >Sign In</button>
+      </form>
+
+      <div class="card-footer">
+        Don't have an account? <a routerLink="/signup">Sign up</a>
+      </div>
+    </div>
+  </main>
+</div>

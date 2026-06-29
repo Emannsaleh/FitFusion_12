@@ -1,0 +1,25 @@
+{
+  "id": "shimaataha123/ita-live-shared",
+  "id_no": 111978039,
+  "title": "ita-live(shared)",
+  "code_file": "ita-live-shared.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "keywords": [],
+  "dataset_sources": [
+    "shimaamotaha/ita-mdt-code-data",
+    "shimaataha123/ita-try-user-input",
+    "shimaataha123/openposebuild-files",
+    "shimaamotaha/viton-hd-ita-mdt",
+    "shimaataha123/our-checkpoints"
+  ],
+  "kernel_sources": [],
+  "competition_sources": [],
+  "model_sources": [],
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:9fa0da194fad2241d3f01a80581cbecbd3a258b4d1b695e2cbbbc62a0fd205ac",
+  "machine_shape": "Gpu"
+}

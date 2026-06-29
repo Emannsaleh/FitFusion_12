@@ -1,0 +1,41 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="left-menu">
+      <!-- Logo -->
+      <a class="logo" routerLink="/home">
+        <img
+          src="assets/images/fitfusion-logo.png"
+          alt="Fit Fusion"
+          class="logo-image"
+        />
+      </a>
+
+      <!-- Tabs -->
+      <div class="nav-links" *ngIf="!isLoginPage">
+        <a routerLink="/vto" routerLinkActive="active-tab" class="tab-btn">Virtual Try-On</a>
+        <a routerLink="/recommendation" routerLinkActive="active-tab" class="tab-btn">Recommendations</a>
+      </div>
+    </div>
+
+    <!-- Right Menu -->
+    <div class="right-menu">
+      <div *ngIf="isLoginPage" class="nav-btn login" routerLink="/login">
+        Login
+      </div>
+            <!-- Sign Up فقط على صفحة login -->
+      <div *ngIf="isLoginPage" class="nav-btn signup" routerLink="/signup">
+        Sign Up
+      </div>
+
+      <!-- Profile و Sign Out على باقي الصفحات -->
+      <div *ngIf="!isLoginPage" class="profile" routerLink="/profile">
+        <img src="assets/Icons/User.png" class="icon">
+        <span>Profile</span>
+      </div>
+      <div *ngIf="!isLoginPage" class="signout" (click)="signOut()">
+        <img src="assets/Icons/LogOut.png" class="icon">
+        <span>Sign Out</span>
+      </div>
+    </div>
+  </div>
+</nav>

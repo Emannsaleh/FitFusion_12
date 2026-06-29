@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+*.pyc
+outputs/
+uploads_images/
+models-saved/
+App/.env

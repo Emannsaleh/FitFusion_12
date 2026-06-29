@@ -1,0 +1,392 @@
+<div class="container">
+  <div class="main-content">
+    <h1 class="outfit-recommendation">Outfit Recommendations </h1>
+    <p class="subtitle">
+      Get personalized outfit suggestions for any occasion 
+    </p>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button
+        class="tab"
+        [class.active]="activeTab === 'closet'"
+        (click)="setTab('closet')"
+      >
+        Use My Closet
+      </button>
+
+      <button
+        class="tab"
+        [class.active]="activeTab === 'upload'"
+        (click)="setTab('upload')"
+      >
+        Upload Pieces
+      </button>
+    </div>
+
+    <!-- CLOSET TAB -->
+    <div class="card" *ngIf="activeTab === 'closet'">
+      <h3>Your Closet</h3>
+      <p class="small">Outfits are built from items you saved in your profile closet.</p>
+
+      <div class="empty" *ngIf="closetItemCount === 0">
+        <p>You have no closet items yet.</p>
+        <button class="pink-btn" routerLink="/profile">Go to Profile to Add Items</button>
+      </div>
+
+      <div class="upload-grid" *ngIf="closetItemCount > 0">
+        <div class="upload-item">
+          <p>Tops</p>
+          <div class="items-row">
+            <div class="item-card" *ngFor="let item of closetTops">
+              <div class="item-image">
+                <img [src]="item.image" [alt]="item.name" />
+                <div class="card-actions">
+                  <span class="edit" (click)="editClosetItem(item)">✏</span>
+                </div>
+              </div>
+              <div class="item-details">
+                <div class="item-title">{{ item.name }}</div>
+                <div class="item-type">{{ item.type }}</div>
+                <div class="tags" *ngIf="item.color || item.gender || item.season">
+                  <span class="tag pink" *ngIf="item.color">{{ item.color }}</span>
+                  <span class="tag gray" *ngIf="item.gender">{{ item.gender }}</span>
+                  <span class="tag gray" *ngIf="item.season">{{ item.season }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="upload-item">
+          <p>Bottoms</p>
+          <div class="items-row">
+            <div class="item-card" *ngFor="let item of closetBottoms">
+              <div class="item-image">
+                <img [src]="item.image" [alt]="item.name" />
+                <div class="card-actions">
+                  <span class="edit" (click)="editClosetItem(item)">✏</span>
+                </div>
+              </div>
+              <div class="item-details">
+                <div class="item-title">{{ item.name }}</div>
+                <div class="item-type">{{ item.type }}</div>
+                <div class="tags" *ngIf="item.color || item.gender || item.season">
+                  <span class="tag pink" *ngIf="item.color">{{ item.color }}</span>
+                  <span class="tag gray" *ngIf="item.gender">{{ item.gender }}</span>
+                  <span class="tag gray" *ngIf="item.season">{{ item.season }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="upload-item">
+          <p>Shoes</p>
+          <div class="items-row">
+            <div class="item-card" *ngFor="let item of closetShoes">
+              <div class="item-image">
+                <img [src]="item.image" [alt]="item.name" />
+                <div class="card-actions">
+                  <span class="edit" (click)="editClosetItem(item)">✏</span>
+                </div>
+              </div>
+              <div class="item-details">
+                <div class="item-title">{{ item.name }}</div>
+                <div class="item-type">{{ item.type }}</div>
+                <div class="tags" *ngIf="item.color || item.gender || item.season">
+                  <span class="tag pink" *ngIf="item.color">{{ item.color }}</span>
+                  <span class="tag gray" *ngIf="item.gender">{{ item.gender }}</span>
+                  <span class="tag gray" *ngIf="item.season">{{ item.season }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UPLOAD TAB -->
+    <div class="card upload-card" *ngIf="activeTab === 'upload'">
+      <h3>Upload Clothing Pieces</h3>
+      <p class="small">
+        Upload tops, bottoms, and shoes to get outfit recommendations
+      </p>
+
+      <div class="upload-grid">
+        <!-- TOPS -->
+        <div class="upload-item">
+          <p>Tops</p>
+          <div class="items-row">
+            <div class="item-card" *ngFor="let item of tops">
+              <div class="item-image">
+                <img [src]="item.image" [alt]="item.name" />
+                <div class="card-actions">
+                  <span class="edit" (click)="editItem(item)">✏</span>
+                  <span class="delete" (click)="deleteItem(item)">✕</span>
+                </div>
+              </div>
+              <div class="item-details">
+                <div class="item-title">{{ item.name }}</div>
+                <div class="item-type">{{ item.type }}</div>
+                <div class="tags">
+                  <span class="tag pink">{{ item.color }}</span>
+                  <span class="tag gray">{{ item.gender }}</span>
+                  <span class="tag gray">{{ item.season }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="upload-box" (click)="topInput.click()">
+              <input
+                type="file"
+                hidden
+                #topInput
+                accept="image/*"
+                multiple
+                (change)="onImageSelected($event, 'top')"
+              />
+              <span>Add Top</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BOTTOMS -->
+        <div class="upload-item">
+          <p>Bottoms</p>
+          <div class="items-row">
+            <div class="item-card" *ngFor="let item of bottoms">
+              <div class="item-image">
+                <img [src]="item.image" [alt]="item.name" />
+                <div class="card-actions">
+                  <span class="edit" (click)="editItem(item)">✏</span>
+                  <span class="delete" (click)="deleteItem(item)">✕</span>
+                </div>
+              </div>
+              <div class="item-details">
+                <div class="item-title">{{ item.name }}</div>
+                <div class="item-type">{{ item.type }}</div>
+                <div class="tags">
+                  <span class="tag pink">{{ item.color }}</span>
+                  <span class="tag gray">{{ item.gender }}</span>
+                  <span class="tag gray">{{ item.season }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="upload-box" (click)="bottomInput.click()">
+              <input
+                type="file"
+                hidden
+                #bottomInput
+                accept="image/*"
+                multiple
+                (change)="onImageSelected($event, 'bottom')"
+              />
+              <span>Add Bottom</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SHOES -->
+        <div class="upload-item">
+          <p>Shoes</p>
+          <div class="items-row">
+            <div class="item-card" *ngFor="let item of shoes">
+              <div class="item-image">
+                <img [src]="item.image" [alt]="item.name" />
+                <div class="card-actions">
+                  <span class="edit" (click)="editItem(item)">✏</span>
+                  <span class="delete" (click)="deleteItem(item)">✕</span>
+                </div>
+              </div>
+              <div class="item-details">
+                <div class="item-title">{{ item.name }}</div>
+                <div class="item-type">{{ item.type }}</div>
+                <div class="tags">
+                  <span class="tag pink">{{ item.color }}</span>
+                  <span class="tag gray">{{ item.gender }}</span>
+                  <span class="tag gray">{{ item.season }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="upload-box" (click)="shoeInput.click()">
+              <input
+                type="file"
+                hidden
+                #shoeInput
+                accept="image/*"
+                multiple
+                (change)="onImageSelected($event, 'foot')"
+              />
+              <span>Add Shoes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+<div class="occasion">
+  <label>Select Occasion</label>
+
+  <div class="occasion-row">
+   <select
+  [(ngModel)]="selectedOccasion"
+  title="choose an occasion"
+>
+  <option value="any">Any</option>
+  <option value="casual">Casual</option>
+  <option value="ethnic">Ethnic</option>
+  <option value="formal">Formal</option>
+  <option value="party">Party</option>
+  <option value="smart_casual">Smart Casual</option>
+  <option value="sports">Sports</option>
+       </select>
+  
+    <button class="recommend-btn" (click)="getRecommendation()">✨ Get Recommendations
+    </button>
+
+  </div>
+</div>
+
+
+<!-- LOADING STATE -->
+<div *ngIf="loadingRecommendations" class="loading-state">
+  <p>Generating your outfit...</p>
+</div>
+
+    <!-- Recommended Outfit -->
+<div class="recommendations" *ngIf="showRecommendations">
+  <h3>Recommended Outfit </h3>
+
+  <div class="outfit-items">
+    <div class="item-card" *ngFor="let item of recommendedOutfit">
+      
+      <div class="item-image">
+        <img [src]="item.image" [alt]="item.name" />
+      </div>
+
+      <div class="item-details">
+        <p class="item-name">{{ item.name }}</p>
+        <p class="item-type">{{ item.type }}</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+  </div>
+
+  <!-- Add Item Modal -->
+  <div class="modal-overlay" *ngIf="showAddItemModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>{{ isEditingItem ? 'Edit Item Details' : 'Add Item Details' }}</h2>
+        <span class="close" (click)="closeAddItem()">✕</span>
+      </div>
+
+      <p class="modal-subtitle">
+        Provide details about this clothing item to get better recommendations
+      </p>
+
+      <div class="image-preview" *ngIf="selectedImage" [style.background-image]="'url(' + selectedImage + ')'"></div>
+
+      <div class="form">
+        <label>Item Name *</label>
+        <input type="text" [(ngModel)]="newItem.name" />
+
+        <label>Type</label>
+        <select [(ngModel)]="newItem.type">
+          <option value="">Select type</option>
+          <option>T-Shirt</option>
+          <option>Shirt</option>
+          <option>Blouse</option>
+          <option>Hoodie</option>
+          <option>Sweater</option>
+          <option>Jacket</option>
+          <option>Tank Top</option>
+          <option>Crop Top</option>
+          <option  value="Jeans">Jeans</option>
+<option  value="Trousers">Trousers</option>
+<option  value="Shorts">Shorts</option>
+<option  value="Skirt">Skirt</option>
+<option value="Leggings">Leggings</option>
+<option  value="Joggers">Joggers</option>
+<option  value="Sweatpants">Sweatpants</option>
+<option  value="Cargo Pants">Cargo Pants</option>
+          <option value="Sneakers">Sneakers</option>
+<option value="Casual Shoes">Casual Shoes</option>
+<option value="Formal Shoes">Formal Shoes</option>
+<option value="Boots">Boots</option>
+<option value="Sandals">Sandals</option>
+<option value="Heels">Heels</option>
+<option value="Flats">Flats</option>
+<option value="Running Shoes">Running Shoes</option>
+
+        </select>
+
+        <label>Color</label>
+        <select [(ngModel)]="newItem.color">
+          <option>Select color</option>
+          <option>Red</option>
+          <option>Blue</option>
+          <option>Green</option>
+          <option>Yellow</option>
+          <option>Orange</option>
+          <option>Purple</option>
+          <option>Pink</option>
+          <option>Brown</option>
+          <option>Black</option>
+          <option>White</option>
+          <option>Gray</option>
+          <option>Beige</option>
+          <option>Navy</option>
+          <option>Maroon</option>
+          <option>Multicolor</option>
+        </select>
+
+        <label>Gender</label>
+        <select [(ngModel)]="newItem.gender">
+          <option>Select gender</option>
+          <option>Women</option>
+          <option>Men</option>
+          <option>Unisex</option>
+        </select>
+
+        <label>Season</label>
+        <select [(ngModel)]="newItem.season">
+          <option>Select season</option>
+          <option>Summer</option>
+          <option>Winter</option>
+          <option>Spring</option>
+          <option>Fall</option>
+          <option>All Season</option>
+        </select>
+
+        <label>Best For</label>
+        <select [(ngModel)]="newItem.occasion">
+          <option>Select occasion</option>
+          <option>Casual</option>
+          <option>Business</option>
+          <option>Formal</option>
+          <option>Party</option>
+          <option>Athletic</option>
+          <option>Beach</option>
+          <option>Any Occasion</option>
+        </select>
+      </div>
+
+      <div class="modal-buttons">
+        <button class="cancel-btn" (click)="closeAddItem()">Cancel</button>
+        <button class="add-btn" (click)="saveItem()">
+          {{ isEditingItem ? 'Save Changes' : 'Add Item' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+<div class="toast" *ngIf="showToast">
+  {{ toastMessage }}
+</div>

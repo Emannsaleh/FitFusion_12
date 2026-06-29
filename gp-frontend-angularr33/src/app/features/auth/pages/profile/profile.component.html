@@ -1,0 +1,287 @@
+<div class="profile-page">
+
+  <main class="main-content">
+
+    <!-- PAGE TITLE -->
+    <h1 class="page-title">My Profile</h1>
+
+    <!-- TABS -->
+    <div class="tabs">
+
+      <button
+        class="tab"
+        [class.active]="activeTab === 'profile'"
+        (click)="setActiveTab('profile')"
+      >
+        Profile Info
+      </button>
+
+      <button
+        class="tab"
+        [class.active]="activeTab === 'closet'"
+        (click)="setActiveTab('closet')"
+      >
+        My Closet
+      </button>
+
+    </div>
+
+    <!-- =========================
+         PROFILE INFO
+    ========================== -->
+
+    <section *ngIf="activeTab === 'profile'" class="card">
+
+      <div class="card-header">
+        <h2>Profile Information</h2>
+        <p>Manage your profile picture and details</p>
+      </div>
+
+      <div class="card-content">
+
+        <!-- PHOTO -->
+        <div class="photo-upload">
+
+          <img
+            [src]="profileImage ? profileImage : 'assets/Icons/UserCircle@2x.png'"
+            class="avatar"
+          />
+
+          <div class="upload-controls">
+
+            <button class="upload-btn" (click)="triggerProfileUpload()">
+
+              <img
+                src="assets/Icons/Upload@2x.png"
+                class="upload-icon"
+              >
+
+              Upload Photo
+
+            </button>
+
+            <span>
+              This photo will be used for virtual try-on
+            </span>
+
+            <input
+              type="file"
+              #profileInput
+              accept="image/*"
+              hidden
+              (change)="onProfileImageSelected($event)"
+            />
+
+          </div>
+
+        </div>
+
+        <!-- USER INFO -->
+        <div class="info-fields">
+
+          <div class="field-group">
+
+            <label>Name</label>
+
+            <div class="field-value">
+              {{ userName }}
+            </div>
+
+          </div>
+
+          <div class="field-group">
+
+            <label>Email</label>
+
+            <div class="field-value">
+              {{ userEmail }}
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         MY CLOSET
+    ========================== -->
+
+    <section *ngIf="activeTab === 'closet'" class="closet-cards">
+
+      <!-- =========================
+           TOPS
+      ========================== -->
+
+      <div class="closet-card">
+
+        <h3>Tops</h3>
+        <p>Manage your top clothing items</p>
+
+        <div class="items-grid">
+
+          <!-- ITEMS -->
+          <div
+            class="item-card"
+            *ngFor="let top of tops"
+          >
+
+            <img
+              [src]="top.imageUrl"
+              [alt]="top.name"
+            >
+
+            <div class="item-info">
+
+              <p class="item-name">
+                {{ top.name }}
+              </p>
+
+            </div>
+
+          </div>
+
+          <!-- ADD CARD -->
+          <button
+            class="add-item-card"
+            (click)="addItem('tops')"
+          >
+
+            <img
+              src="assets/Icons/Upload.png"
+              class="plus-icon"
+            >
+
+            <p class="add-btn">
+              Add Top
+            </p>
+
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- =========================
+           BOTTOMS
+      ========================== -->
+
+      <div class="closet-card">
+
+        <h3>Bottoms</h3>
+        <p>Manage your bottom clothing items</p>
+
+        <div class="items-grid">
+
+          <!-- ITEMS -->
+          <div
+            class="item-card"
+            *ngFor="let bottom of bottoms"
+          >
+
+            <img
+              [src]="bottom.imageUrl"
+              [alt]="bottom.name"
+            >
+
+            <div class="item-info">
+
+              <p class="item-name">
+                {{ bottom.name }}
+              </p>
+
+            </div>
+
+          </div>
+
+          <!-- ADD CARD -->
+          <button
+            class="add-item-card"
+            (click)="addItem('bottoms')"
+          >
+
+            <img
+              src="assets/Icons/Upload.png"
+              class="plus-icon"
+            >
+
+            <p class="add-btn">
+              Add Bottom
+            </p>
+
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- =========================
+           SHOES
+      ========================== -->
+
+      <div class="closet-card">
+
+        <h3>Shoes</h3>
+        <p>Manage your shoes collection</p>
+
+        <div class="items-grid">
+
+          <!-- ITEMS -->
+          <div
+            class="item-card"
+            *ngFor="let shoe of shoes"
+          >
+
+            <img
+              [src]="shoe.imageUrl"
+              [alt]="shoe.name"
+            >
+
+            <div class="item-info">
+
+              <p class="item-name">
+                {{ shoe.name }}
+              </p>
+
+            </div>
+
+          </div>
+
+          <!-- ADD CARD -->
+          <button
+            class="add-item-card"
+            (click)="addItem('shoes')"
+          >
+
+            <img
+              src="assets/Icons/Upload.png"
+              class="plus-icon"
+            >
+
+            <p class="add-btn">
+              Add Shoe
+            </p>
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <input
+  type="file"
+  #closetInput
+  accept="image/*"
+  hidden
+  (change)="onClosetItemSelected($event)"
+/>
+
+  </main>
+
+
+
+</div>
