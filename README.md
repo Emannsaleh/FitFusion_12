@@ -40,11 +40,6 @@ Ain Shams University
 ### 📹 Full Demo
 
 https://drive.google.com/file/d/1kTmrvGKqpr4r6aVgyLJ_ki6cgIc9NiHn/view?usp=sharing
-
-### 📑 Presentation
-
-https://canva.link/ubffcdzs23q8u0o
-
 </div>
 
 ---
