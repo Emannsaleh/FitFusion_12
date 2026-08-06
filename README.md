@@ -1,5 +1,5 @@
 <div align="center">
-
+ 
 <img src="screenshots/logo.png" width="180">
 
 <h1 align="center">👕 FitFusion</h1>
