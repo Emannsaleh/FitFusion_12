@@ -307,12 +307,6 @@ Recommended Outfit
 
 ---
 
-## Database
-
-- MongoDB *(Replace if different)*
-
----
-
 # 📂 Project Structure
 
 ```text
